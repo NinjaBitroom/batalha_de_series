@@ -1,21 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class ResponsiveArray extends GetWidget {
+class ResponsiveArray extends GetResponsiveView {
   final List<Widget> children;
 
-  const ResponsiveArray({super.key, required this.children});
+  ResponsiveArray({super.key, required this.children})
+      : super(alwaysUseBuilder: false);
 
   @override
-  Widget build(BuildContext context) {
-    if (context.isPhone) {
-      return Column(
-        children: children,
-      );
-    } else {
-      return Row(
-        children: children,
-      );
-    }
+  Widget? phone() {
+    return Column(
+      children: children,
+    );
+  }
+
+  @override
+  Widget desktop() {
+    return Row(
+      children: children,
+    );
   }
 }
